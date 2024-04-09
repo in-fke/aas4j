@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2021 Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e. V.
+ * Copyright (c) 2023, SAP SE or an SAP affiliate company
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,7 +15,13 @@
 
 package org.eclipse.digitaltwin.aas4j.v3.model.impl;
 
-import org.eclipse.digitaltwin.aas4j.v3.model.*;
+import org.eclipse.digitaltwin.aas4j.v3.model.EmbeddedDataSpecification;
+import org.eclipse.digitaltwin.aas4j.v3.model.Extension;
+import org.eclipse.digitaltwin.aas4j.v3.model.LangStringNameType;
+import org.eclipse.digitaltwin.aas4j.v3.model.LangStringTextType;
+import org.eclipse.digitaltwin.aas4j.v3.model.Qualifier;
+import org.eclipse.digitaltwin.aas4j.v3.model.Reference;
+import org.eclipse.digitaltwin.aas4j.v3.model.RelationshipElement;
 import org.eclipse.digitaltwin.aas4j.v3.model.annotations.IRI;
 import org.eclipse.digitaltwin.aas4j.v3.model.builder.RelationshipElementBuilder;
 
@@ -39,8 +46,8 @@ public class DefaultRelationshipElement implements RelationshipElement {
     @IRI("https://admin-shell.io/aas/3/0/HasExtensions/extensions")
     protected List<Extension> extensions = new ArrayList<>();
 
-    @IRI("https://admin-shell.io/aas/3/0/HasSemantics/semanticID")
-    protected Reference semanticID;
+    @IRI("https://admin-shell.io/aas/3/0/HasSemantics/semanticId")
+    protected Reference semanticId;
 
     @IRI("https://admin-shell.io/aas/3/0/HasSemantics/supplementalSemanticIds")
     protected List<Reference> supplementalSemanticIds = new ArrayList<>();
@@ -66,22 +73,20 @@ public class DefaultRelationshipElement implements RelationshipElement {
     @IRI("https://admin-shell.io/aas/3/0/RelationshipElement/second")
     protected Reference second;
 
-    public DefaultRelationshipElement() {
-
-    }
+    public DefaultRelationshipElement() {}
 
     @Override
     public int hashCode() {
         return Objects.hash(this.first,
             this.second,
             this.embeddedDataSpecifications,
-            this.semanticID,
-            this.supplementalSemanticIds,
             this.category,
-            this.description,
-            this.displayName,
             this.idShort,
+            this.displayName,
+            this.description,
             this.extensions,
+            this.semanticId,
+            this.supplementalSemanticIds,
             this.qualifiers);
     }
 
@@ -98,13 +103,13 @@ public class DefaultRelationshipElement implements RelationshipElement {
             return Objects.equals(this.first, other.first) &&
                 Objects.equals(this.second, other.second) &&
                 Objects.equals(this.embeddedDataSpecifications, other.embeddedDataSpecifications) &&
-                Objects.equals(this.semanticID, other.semanticID) &&
-                Objects.equals(this.supplementalSemanticIds, other.supplementalSemanticIds) &&
                 Objects.equals(this.category, other.category) &&
-                Objects.equals(this.description, other.description) &&
-                Objects.equals(this.displayName, other.displayName) &&
                 Objects.equals(this.idShort, other.idShort) &&
+                Objects.equals(this.displayName, other.displayName) &&
+                Objects.equals(this.description, other.description) &&
                 Objects.equals(this.extensions, other.extensions) &&
+                Objects.equals(this.semanticId, other.semanticId) &&
+                Objects.equals(this.supplementalSemanticIds, other.supplementalSemanticIds) &&
                 Objects.equals(this.qualifiers, other.qualifiers);
         }
     }
@@ -140,26 +145,6 @@ public class DefaultRelationshipElement implements RelationshipElement {
     }
 
     @Override
-    public Reference getSemanticID() {
-        return semanticID;
-    }
-
-    @Override
-    public void setSemanticID(Reference semanticID) {
-        this.semanticID = semanticID;
-    }
-
-    @Override
-    public List<Reference> getSupplementalSemanticIds() {
-        return supplementalSemanticIds;
-    }
-
-    @Override
-    public void setSupplementalSemanticIds(List<Reference> supplementalSemanticIds) {
-        this.supplementalSemanticIds = supplementalSemanticIds;
-    }
-
-    @Override
     public String getCategory() {
         return category;
     }
@@ -167,26 +152,6 @@ public class DefaultRelationshipElement implements RelationshipElement {
     @Override
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    @Override
-    public List<LangStringTextType> getDescription() {
-        return description;
-    }
-
-    @Override
-    public void setDescription(List<LangStringTextType> description) {
-        this.description = description;
-    }
-
-    @Override
-    public List<LangStringNameType> getDisplayName() {
-        return displayName;
-    }
-
-    @Override
-    public void setDisplayName(List<LangStringNameType> displayName) {
-        this.displayName = displayName;
     }
 
     @Override
@@ -200,6 +165,26 @@ public class DefaultRelationshipElement implements RelationshipElement {
     }
 
     @Override
+    public List<LangStringNameType> getDisplayName() {
+        return displayName;
+    }
+
+    @Override
+    public void setDisplayName(List<LangStringNameType> displayNames) {
+        this.displayName = displayNames;
+    }
+
+    @Override
+    public List<LangStringTextType> getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(List<LangStringTextType> descriptions) {
+        this.description = descriptions;
+    }
+
+    @Override
     public List<Extension> getExtensions() {
         return extensions;
     }
@@ -210,6 +195,26 @@ public class DefaultRelationshipElement implements RelationshipElement {
     }
 
     @Override
+    public Reference getSemanticId() {
+        return semanticId;
+    }
+
+    @Override
+    public void setSemanticId(Reference semanticId) {
+        this.semanticId = semanticId;
+    }
+
+    @Override
+    public List<Reference> getSupplementalSemanticIds() {
+        return supplementalSemanticIds;
+    }
+
+    @Override
+    public void setSupplementalSemanticIds(List<Reference> supplementalSemanticIds) {
+        this.supplementalSemanticIds = supplementalSemanticIds;
+    }
+
+    @Override
     public List<Qualifier> getQualifiers() {
         return qualifiers;
     }
@@ -217,6 +222,14 @@ public class DefaultRelationshipElement implements RelationshipElement {
     @Override
     public void setQualifiers(List<Qualifier> qualifiers) {
         this.qualifiers = qualifiers;
+    }
+
+    public String toString() {
+        return String.format(
+            "DefaultRelationshipElement (" + "first=%s,"
+                + "second=%s,"
+                + ")",
+            this.first, this.second);
     }
 
     /**

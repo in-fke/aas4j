@@ -1,10 +1,10 @@
 # Eclipse AAS4J
 
-> :newspaper: The _`Eclipse AAS4J 1.0.0-milestone-03`_ release is available on Maven Central Repository and includes the 
-> following artifacts implementing the _AAS Specs – Part 1 V3.0 (final)_: `dataformat-core`, `dataformat-aasx`, 
-> `dataformat-xml`, `dataformat-json`, `dataformat-parent`, and `model`.
+> :newspaper: The _`Eclipse AAS4J 1.0.1`_ release is available on [Maven Central Repository](https://oss.sonatype.org/#nexus-search;quick~org.eclipse.digitaltwin.aas4j) and includes the 
+> following artifacts implementing the _AAS Specs – Part 1 V3.0 (final)_: `aas4j-dataformat-core`, `aas4j-dataformat-aasx`, 
+> `aas4j-dataformat-xml`, `aas4j-dataformat-json`, `aas4j-dataformat-parent`, and `aas4j-model`.
 
-[Eclipse AA4J](https://projects.eclipse.org/projects/dt.aas4j) implements the specification of the Asset Administration 
+[Eclipse AAS4J](https://projects.eclipse.org/projects/dt.aas4j) implements the specification of the Asset Administration 
 Shell (AAS) such as metamodels, submodels, serialization and deserialization modules, validators, and transformation 
 libraries based on the AAS specifications. It also contains all classes and properties as defined by the document 
 'Specification of the Asset Administration Shell Part 1: Meta-Model' published on 
@@ -50,9 +50,9 @@ or by integrating the respective modules as dependencies from [Maven Central](ht
 ```
 <dependency>
   <groupId>org.eclipse.digitaltwin.aas4j</groupId>
-  <artifactId>dataformat-json</artifactId>
-  <version>latest-version</version>
-<dependency>
+  <artifactId>aas4j-model</artifactId>
+  <version>1.0.1</version>
+</dependency>
 ```
 
 ## AAS4J Project Structure

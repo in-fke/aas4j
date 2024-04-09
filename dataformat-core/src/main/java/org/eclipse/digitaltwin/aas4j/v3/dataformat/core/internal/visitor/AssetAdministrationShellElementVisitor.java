@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2021 Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e. V.
+ * Copyright (c) 2023 SAP SE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,10 +54,11 @@ import org.eclipse.digitaltwin.aas4j.v3.model.Reference;
 import org.eclipse.digitaltwin.aas4j.v3.model.ReferenceElement;
 import org.eclipse.digitaltwin.aas4j.v3.model.RelationshipElement;
 import org.eclipse.digitaltwin.aas4j.v3.model.Resource;
-import org.eclipse.digitaltwin.aas4j.v3.model.SpecificAssetID;
+import org.eclipse.digitaltwin.aas4j.v3.model.SpecificAssetId;
 import org.eclipse.digitaltwin.aas4j.v3.model.Submodel;
 import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElement;
 import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElementCollection;
+import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElementList;
 
 public interface AssetAdministrationShellElementVisitor {
 
@@ -132,8 +134,8 @@ public interface AssetAdministrationShellElementVisitor {
         Class<?> type = hasSemantics.getClass();
         if (Extension.class.isAssignableFrom(type)) {
             visit((Extension) hasSemantics);
-        } else if (SpecificAssetID.class.isAssignableFrom(type)) {
-            visit((SpecificAssetID) hasSemantics);
+        } else if (SpecificAssetId.class.isAssignableFrom(type)) {
+            visit((SpecificAssetId) hasSemantics);
         } else if (Submodel.class.isAssignableFrom(type)) {
             visit((Submodel) hasSemantics);
         } else if (SubmodelElement.class.isAssignableFrom(type)) {
@@ -170,6 +172,8 @@ public interface AssetAdministrationShellElementVisitor {
             visit((Capability) submodelElement);
         } else if (SubmodelElementCollection.class.isAssignableFrom(type)) {
             visit((SubmodelElementCollection) submodelElement);
+        } else if (SubmodelElementList.class.isAssignableFrom(type)) {
+            visit((SubmodelElementList) submodelElement);
         } else if (Operation.class.isAssignableFrom(type)) {
             visit((Operation) submodelElement);
         } else if (EventElement.class.isAssignableFrom(type)) {
@@ -230,8 +234,8 @@ public interface AssetAdministrationShellElementVisitor {
     public default void visit(ConceptDescription conceptDescription) {
     }
 
-	public default void visit(DataSpecificationContent dataSpecificationContent) {
-	}
+    public default void visit(DataSpecificationContent dataSpecificationContent) {
+    }
 
     public default void visit(Entity entity) {
     }
@@ -245,7 +249,7 @@ public interface AssetAdministrationShellElementVisitor {
     public default void visit(File file) {
     }
 
-    public default void visit(SpecificAssetID identifierKeyValuePair) {
+    public default void visit(SpecificAssetId identifierKeyValuePair) {
     }
 
     public default void visit(Key key) {
@@ -294,6 +298,9 @@ public interface AssetAdministrationShellElementVisitor {
     }
 
     public default void visit(SubmodelElementCollection submodelElementCollection) {
+    }
+
+    public default void visit(SubmodelElementList submodelElementList) {
     }
 
     public default void visit(Resource resource) {
